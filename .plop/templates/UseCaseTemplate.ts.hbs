@@ -1,0 +1,9 @@
+interface I{{ pascalCase name }}Input {}
+
+interface I{{ pascalCase name }}Response {}
+
+export class {{pascalCase name}} {
+    constructor() {}
+
+    async execute(input: I{{ pascalCase name }}DTO): Promise<I{{ pascalCase name }}Response> {}
+}
