@@ -1,4 +1,5 @@
 import type { AWS } from "@serverless/typescript";
+import createBook from "./src/modules/books/useCases/createBook";
 
 const serverlessConfiguration: AWS = {
   service: "serverless-crud",
@@ -21,7 +22,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: {},
+  functions: { createBook },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -41,6 +42,9 @@ const serverlessConfiguration: AWS = {
         migrate: true,
       },
     },
+    "serverless-offline": {
+      host: "127.0.0.1",
+    },
   },
   resources: {
     Resources: {
@@ -52,6 +56,24 @@ const serverlessConfiguration: AWS = {
             ReadCapacityUnits: 5,
             WriteCapacityUnits: 5,
           },
+          GlobalSecondaryIndexes: [
+            {
+              IndexName: "sk_index",
+              Projection: {
+                ProjectionType: "ALL",
+              },
+              ProvisionedThroughput: {
+                ReadCapacityUnits: 5,
+                WriteCapacityUnits: 5,
+              },
+              KeySchema: [
+                {
+                  AttributeName: "sk",
+                  KeyType: "HASH",
+                },
+              ],
+            },
+          ],
           AttributeDefinitions: [
             {
               AttributeName: "pk",
