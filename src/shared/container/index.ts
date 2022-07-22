@@ -8,3 +8,5 @@ container.registerSingleton<IBooksRepository>(
   "OneTableBooksRepository",
   OneTableBooksRepository
 );
+
+export const dicontainer = container;

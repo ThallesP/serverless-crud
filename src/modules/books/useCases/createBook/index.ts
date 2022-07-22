@@ -1,7 +1,7 @@
-import { handlerPath } from "@libs/handler-resolver";
+import { handlerPath } from "@libs/HandlerResolver";
 
 export default {
-  handler: `${handlerPath(__dirname)}/CreateBookHandler.main`,
+  handler: `${handlerPath(__dirname)}/CreateBookController.main`,
   events: [
     {
       http: {

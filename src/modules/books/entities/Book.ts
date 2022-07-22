@@ -9,12 +9,14 @@ interface IBookProps {
 
 export class Book {
   constructor({ author, price, title, id }: IBookProps) {
+    const idGen = id || uuidV4();
+
     Object.assign(this, {
-      id: id || uuidV4(),
+      id: idGen,
       author,
       price,
       title,
-      pk: `book:${id}`,
+      pk: `book:${idGen}`,
       sk: `book:${author}`,
     });
   }

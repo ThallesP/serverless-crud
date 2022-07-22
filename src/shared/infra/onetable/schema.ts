@@ -3,6 +3,7 @@ export const ONETABLE_SCHEMA = {
   version: "0.0.1",
   indexes: {
     primary: { hash: "pk", sort: "sk" },
+    sk_index: { hash: "sk" },
   },
   models: {
     Book: {

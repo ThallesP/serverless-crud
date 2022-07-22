@@ -11,6 +11,20 @@ export class OneTableBooksRepository implements IBooksRepository {
     this.bookModel = ONETABLE.getModel("Book");
   }
 
+  async findByTitleAndAuthor(
+    title: string,
+    author: string
+  ): Promise<Book | null> {
+    const book = await this.bookModel.get(
+      { sk: `book:${author}`, title },
+      { index: "sk_index" }
+    );
+
+    if (!book) return null;
+
+    return new Book(book);
+  }
+
   async create(book: Book): Promise<Book> {
     const bookCreated = await this.bookModel.create(book);
 
