@@ -1,5 +1,6 @@
 import type { AWS } from "@serverless/typescript";
 import createBook from "./src/modules/books/useCases/createBook";
+import findBookById from "./src/modules/books/useCases/findBookById";
 
 const serverlessConfiguration: AWS = {
   service: "serverless-crud",
@@ -22,7 +23,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { createBook },
+  functions: { createBook, findBookById },
   package: { individually: true },
   custom: {
     esbuild: {
