@@ -1,4 +1,6 @@
 import { Book } from "@books/entities/Book";
+import { BookNotFoundException } from "@books/exceptions/BookNotFoundException";
+import { randomUUID } from "crypto";
 import * as request from "supertest";
 
 const TEST_URL = process.env.TEST_URL_HOST;
@@ -19,5 +21,11 @@ describe("FindBookByIdController", () => {
     const { body } = await request(TEST_URL).get(`/books/${book.id}`);
 
     expect(body).toHaveProperty("id");
+  });
+
+  it("should not be able to find a book that doesn't exists", async () => {
+    const { body } = await request(TEST_URL).get(`/books/${randomUUID()}`);
+
+    expect(body.error).toEqual(new BookNotFoundException().name);
   });
 });
