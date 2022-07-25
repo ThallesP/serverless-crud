@@ -11,12 +11,20 @@ export class OneTableBooksRepository implements IBooksRepository {
     this.bookModel = ONETABLE.getModel("Book");
   }
 
+  async delete(id: string): Promise<void> {
+    const book = await this.bookModel.get({ pk: `book:${id}` });
+
+    if (!book) return;
+
+    await this.bookModel.remove({ pk: book.pk, sk: book.sk });
+  }
+
   async findById(id: string): Promise<Book | null> {
     const book = await this.bookModel.get({ pk: `book:${id}` });
 
     if (!book) return null;
 
-    return book;
+    return new Book(book);
   }
 
   async findByTitleAndAuthor(

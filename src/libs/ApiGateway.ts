@@ -18,11 +18,11 @@ export type APIEventBodySchema<S> = Omit<APIGatewayProxyEvent, "body"> & {
 };
 
 export const formatJSONResponse = (
-  response: Record<string, unknown>,
+  response?: Record<string, unknown>,
   statusCode: number = 400
 ) => {
   return {
     statusCode,
-    body: JSON.stringify(response),
+    body: response ? JSON.stringify(response) : undefined,
   };
 };
