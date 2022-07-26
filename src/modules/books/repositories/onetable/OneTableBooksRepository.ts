@@ -17,12 +17,8 @@ export class OneTableBooksRepository implements IBooksRepository {
     return new Book(bookUpdated as Book);
   }
 
-  async delete(id: string): Promise<void> {
-    const book = await this.bookModel.get({ pk: `book:${id}` });
-
-    if (!book) return;
-
-    await this.bookModel.remove({ pk: book.pk, sk: book.sk });
+  async delete({ pk, sk }: Book): Promise<void> {
+    await this.bookModel.remove({ pk, sk });
   }
 
   async findById(id: string): Promise<Book | null> {

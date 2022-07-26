@@ -1,4 +1,3 @@
-import { BookNotFoundException } from "@books/exceptions/BookNotFoundException";
 import { Book } from "../../entities/Book";
 import { IBooksRepository } from "../IBooksRepository";
 
@@ -15,10 +14,8 @@ export class InMemoryBooksRepository implements IBooksRepository {
     return this.books[bookIndex];
   }
 
-  async delete(id: string): Promise<void> {
+  async delete({ id }: Book): Promise<void> {
     const bookIndex = this.books.findIndex((book) => book.id === id);
-
-    if (bookIndex <= -1) throw new BookNotFoundException();
 
     this.books.splice(bookIndex, 1);
   }
