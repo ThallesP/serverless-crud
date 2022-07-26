@@ -11,6 +11,12 @@ export class OneTableBooksRepository implements IBooksRepository {
     this.bookModel = ONETABLE.getModel("Book");
   }
 
+  async update(book: Book): Promise<Book> {
+    const bookUpdated = await this.bookModel.update(book);
+
+    return new Book(bookUpdated as Book);
+  }
+
   async delete(id: string): Promise<void> {
     const book = await this.bookModel.get({ pk: `book:${id}` });
 

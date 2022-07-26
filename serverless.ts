@@ -2,6 +2,7 @@ import type { AWS } from "@serverless/typescript";
 import createBook from "./src/modules/books/useCases/createBook";
 import findBookById from "./src/modules/books/useCases/findBookById";
 import deleteBook from "./src/modules/books/useCases/deleteBook";
+import updateBook from "./src/modules/books/useCases/updateBook";
 
 const serverlessConfiguration: AWS = {
   service: "serverless-crud",
@@ -23,7 +24,7 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
     },
   },
-  functions: { createBook, findBookById, deleteBook },
+  functions: { createBook, findBookById, deleteBook, updateBook },
   package: { individually: true },
   custom: {
     esbuild: {

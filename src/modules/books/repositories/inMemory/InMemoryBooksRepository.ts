@@ -1,13 +1,24 @@
+import { BookNotFoundException } from "@books/exceptions/BookNotFoundException";
 import { Book } from "../../entities/Book";
 import { IBooksRepository } from "../IBooksRepository";
 
 export class InMemoryBooksRepository implements IBooksRepository {
   private books: Book[] = [];
 
+  async update(updatedBook: Book): Promise<Book> {
+    const bookIndex = this.books.findIndex(
+      (book) => book.id === updatedBook.id
+    );
+
+    this.books[bookIndex] = updatedBook;
+
+    return this.books[bookIndex];
+  }
+
   async delete(id: string): Promise<void> {
     const bookIndex = this.books.findIndex((book) => book.id === id);
 
-    if (bookIndex <= -1) return;
+    if (bookIndex <= -1) throw new BookNotFoundException();
 
     this.books.splice(bookIndex, 1);
   }

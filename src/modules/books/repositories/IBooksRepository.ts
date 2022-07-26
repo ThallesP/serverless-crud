@@ -5,4 +5,5 @@ export interface IBooksRepository {
   findByTitleAndAuthor(title: string, author: string): Promise<Book | null>;
   findById(id: string): Promise<Book | null>;
   delete(id: string): Promise<void>;
+  update(book: Book): Promise<Book>;
 }
