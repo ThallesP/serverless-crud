@@ -1,4 +1,4 @@
-import { formatJSONResponse } from "@libs/ApiGateway";
+import { formatJSONResponse } from "@utils/ApiGateway";
 import { BaseException } from "@shared/classes/BaseException";
 
 export function exceptionHandler({ error }: { error: Error | null }) {

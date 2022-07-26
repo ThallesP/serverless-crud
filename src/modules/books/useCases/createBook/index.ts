@@ -1,4 +1,4 @@
-import { handlerPath } from "@libs/HandlerResolver";
+import { handlerPath } from "@shared/utils/HandlerResolver";
 import schema from "./CreateBookSchema";
 
 export default {

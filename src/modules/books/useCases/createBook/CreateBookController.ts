@@ -1,5 +1,5 @@
-import { APIEventBodySchema, formatJSONResponse } from "@libs/ApiGateway";
-import { middyfy } from "@libs/Lambda";
+import { APIEventBodySchema, formatJSONResponse } from "@utils/ApiGateway";
+import { middyfy } from "@utils/Lambda";
 import { dicontainer } from "src/shared/container";
 import createBookSchema from "./CreateBookSchema";
 import { CreateBookUseCase } from "./CreateBookUseCase";
