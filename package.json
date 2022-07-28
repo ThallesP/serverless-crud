@@ -4,7 +4,7 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "jest",
+    "test:offline": "TEST_ULR_HOST=http://127.0.0.1:3000/dev jest",
     "typecheck": "tsc --noEmit"
   },
   "engines": {

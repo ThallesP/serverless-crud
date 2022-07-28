@@ -18,6 +18,6 @@ export class DeleteBookUseCase {
 
     if (!book) throw new BookNotFoundException();
 
-    await this.booksRepository.delete(id);
+    await this.booksRepository.delete(book);
   }
 }
